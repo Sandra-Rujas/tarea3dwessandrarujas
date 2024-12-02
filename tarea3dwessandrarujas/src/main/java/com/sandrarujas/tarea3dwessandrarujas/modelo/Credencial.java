@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 @Table(name="credenciales")
 public class Credencial implements Serializable{
 
-	//Atributos
+		//Atributos
 		private static final long serialVersionUID = 1L;
 
         @Id

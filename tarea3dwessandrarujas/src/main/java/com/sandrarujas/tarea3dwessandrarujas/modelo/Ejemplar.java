@@ -20,6 +20,7 @@ import jakarta.persistence.Table;
 @Table(name = "ejemplares")
 public class Ejemplar implements Serializable {
 
+	//Atributos
 	private static final long serialVersionUID = 1L;
 
 	@Id
