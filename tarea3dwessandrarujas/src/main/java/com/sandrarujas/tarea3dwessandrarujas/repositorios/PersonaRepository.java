@@ -8,9 +8,9 @@ import com.sandrarujas.tarea3dwessandrarujas.modelo.Persona;
 
 public interface PersonaRepository  extends JpaRepository <Persona, Long>{
 
-	boolean emailExistente(String email);
+   	 boolean existsByEmail(String email);
 
-	 @Query("SELECT c.persona.id FROM Credenciales c WHERE c.usuario = :usuario")
+	 @Query("SELECT c.persona.id FROM Credencial c WHERE c.usuario = :usuario")
 	 Long idUsuarioAutenticado(@Param("usuario") String usuario);
 	 
 	 Persona findByNombreContainingIgnoreCase(String nombre);

@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.sandrarujas.tarea3dwessandrarujas.modelo.Ejemplar;
-import com.sandrarujas.tarea3dwessandrarujas.modelo.Planta;
 
 import jakarta.transaction.Transactional;
 
