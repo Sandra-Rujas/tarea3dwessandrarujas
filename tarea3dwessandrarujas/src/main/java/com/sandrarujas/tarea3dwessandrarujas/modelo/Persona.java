@@ -33,7 +33,7 @@ public class Persona implements Serializable{
         private String email;
 
         @OneToOne(mappedBy= "persona", cascade= CascadeType.ALL)
-        private Credencial credenciales;
+        private Credencial credencial;
 
         @OneToMany(mappedBy = "persona")
         private List<Mensaje> mensajes = new LinkedList<Mensaje>();
@@ -76,11 +76,11 @@ public class Persona implements Serializable{
         }
 
         public Credencial getCredenciales() {
-                return credenciales;
+                return credencial;
         }
 
-        public void setCredencial(Credencial credenciales) {
-                this.credenciales = credenciales;
+        public void setCredencial(Credencial credencial) {
+                this.credencial = credencial;
         }
 
 
@@ -97,7 +97,7 @@ public class Persona implements Serializable{
         
         @Override
         public int hashCode() {
-                return Objects.hash(credenciales, email, id, nombre);
+                return Objects.hash(credencial, email, id, nombre);
         }
 
         @Override
@@ -109,7 +109,7 @@ public class Persona implements Serializable{
                 if (getClass() != obj.getClass())
                         return false;
                 Persona other = (Persona) obj;
-                return Objects.equals(credenciales, other.credenciales) && Objects.equals(email, other.email)
+                return Objects.equals(credencial, other.credencial) && Objects.equals(email, other.email)
                                 && Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre);
         }
 
@@ -117,7 +117,7 @@ public class Persona implements Serializable{
         
         @Override
         public String toString() {
-                return "Persona [id=" + id + ", nombre=" + nombre + ", email=" + email + ", credenciales=" + credenciales + "]";
+                return "Persona [id=" + id + ", nombre=" + nombre + ", email=" + email + ", credenciales=" + credencial + "]";
         }
 
 

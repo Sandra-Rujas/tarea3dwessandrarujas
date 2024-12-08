@@ -30,7 +30,7 @@ public class Credencial implements Serializable{
         private String password;
 
         @OneToOne
-        @JoinColumn(name="idPersona", unique=true)
+        @JoinColumn(name="id_persona", unique=true)
         private Persona persona;
 
         //Constructores
