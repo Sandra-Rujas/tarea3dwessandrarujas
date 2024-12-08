@@ -118,7 +118,7 @@ public class Mensaje implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Mensaje [id=" + id + ", fechaHora=" + fechaHora + ", mensaje=" + mensaje + ", persona="
-				+ persona.getNombre() + ", ejemplar=" + ejemplar.getNombre() + "]";
+		return "Mensaje ID:" + id + ", Fecha: " + fechaHora + ", Mensaje:" + mensaje + ", Persona:"
+				+ persona.getNombre() + ", Ejemplar:" + ejemplar.getNombre();
 	}
 }

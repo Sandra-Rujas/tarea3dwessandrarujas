@@ -8,6 +8,7 @@ import java.util.Objects;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,7 +37,7 @@ public class Planta implements Serializable {
 	@Column
 	private String nombreCientifico;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "idplanta")
 	private List<Ejemplar> ejemplares = new LinkedList<Ejemplar>();
 	
@@ -122,8 +123,8 @@ public class Planta implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Planta [id=" + id + ", codigo=" + codigo + ", nombreComun=" + nombreComun + ", nombreCientifico="
-				+ nombreCientifico + ", ejemplares=" + ejemplares + "]";
+		return "Planta id:" + id + ", codigo:" + codigo + ", Nombre común:" + nombreComun + ", Nombre Cientifico:"
+				+ nombreCientifico;
 	}
 
 	

@@ -113,7 +113,7 @@ public class Ejemplar implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Ejemplar [id=" + id + ", nombre=" + nombre + ", planta=" + planta + "]";
+		return "Ejemplar ID: " + id + ", Nombre: " + nombre;
 	}
 
 }

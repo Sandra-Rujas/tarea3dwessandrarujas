@@ -109,7 +109,7 @@ public class Credencial implements Serializable{
         
         @Override
         public String toString() {
-                return "Credenciales [id=" + id + ", usuario=" + usuario + ", password=" + password + "]";
+                return "Credenciales ID:" + id + ", Usuario:" + usuario + ", Contraseña:" + password + "]";
         }
 
 }
