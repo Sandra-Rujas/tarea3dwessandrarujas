@@ -34,7 +34,7 @@ public class ViveroFachadaInvitado {
             System.out.println("Selecciona una opción: ");
             System.out.println("1. Ver plantas");
             System.out.println("2. Login");
-            System.out.println("3. Cerrar sesión");
+            System.out.println("3. Finalizar programa");
             System.out.println("- - - - - - - - - - - - - - - -");
             try {
                 opcion = sc.nextInt();
