@@ -36,20 +36,6 @@ public class ServiciosPersona {
 	    	return personaRepository.findByNombreContainingIgnoreCase(nombre);
 	    }
 	    
-	    public boolean eliminarPersona(Long id) {
-	        try {
-	            if (personaRepository.existsById(id)) {
-	            	personaRepository.deleteById(id);
-	                return true;
-	            } else {
-	                return false;
-	            }
-	        } catch (Exception e) {
-	            System.out.println("Error al eliminar la persona: " + e.getMessage());
-	            return false;
-	        }
-	    }
-	    
 	    public boolean validarPersona(Persona persona) {
 	        if (persona == null) {
 	            return false;
@@ -57,7 +43,7 @@ public class ServiciosPersona {
 	        if (persona.getNombre() == null || persona.getNombre().isEmpty()) {
 	            return false;
 	        }
-	        if (persona.getNombre().length() < 3 || persona.getNombre().length() > 20) {
+	        if (persona.getNombre().length() < 3 || persona.getNombre().length() > 25) {
 	            return false;
 	        }
 	        if (persona.getEmail() == null || persona.getEmail().isEmpty()) {

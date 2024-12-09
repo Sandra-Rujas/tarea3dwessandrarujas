@@ -19,8 +19,8 @@ public class ServiciosEjemplar {
     @Autowired
     private EjemplarRepository ejemplarRepository;
 
-    public void insertar(Ejemplar e) {
-    	ejemplarRepository.save(e);
+    public void insertar(Ejemplar ejemplar) {
+    	ejemplarRepository.save(ejemplar);
     }
 
     /**
@@ -96,25 +96,6 @@ public class ServiciosEjemplar {
         return true;
     }
     
-    /**
-     * Método para eliminar un ejemplar
-     *
-     * @param id ID del ejemplar
-     * @return true si se ha conseguido eliminar un ejemplar.
-     */
-    public boolean borrarEjemplar(Long id) {
-        try {
-            if (ejemplarRepository.existsById(id)) {
-                ejemplarRepository.deleteById(id);
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception e) {
-            System.out.println("Error al eliminar el ejemplar: " + e.getMessage());
-            return false;
-        }
-    }
 }
 
 

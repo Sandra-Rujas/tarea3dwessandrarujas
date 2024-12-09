@@ -61,10 +61,10 @@ public class ServiciosCredencial {
     /**
      * Método para validar la contraseña.
      *
-     * @param contraseña Contraseña .
+     * @param password Contraseña .
      * @return true si la contraseña es válida
      */
-    public boolean validarContraseña(String contraseña) {
-        return contraseña.matches("^[A-Za-z0-9]{6,20}$");
+    public boolean validarPassword(String password) {
+        return password.matches("^[A-Za-z0-9]{6,20}$");
     }
 }
