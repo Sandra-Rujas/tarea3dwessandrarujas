@@ -1,8 +1,7 @@
 package com.sandrarujas.tarea3dwessandrarujas.repositorios;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,8 +12,8 @@ import com.sandrarujas.tarea3dwessandrarujas.modelo.Mensaje;
 @Repository
 public interface MensajeRepository extends JpaRepository <Mensaje, Long>{
 	
-    @Query("SELECT m FROM Mensaje m WHERE m.fechaHora BETWEEN :primeraFecha AND :segundaFecha")
-    ArrayList<Mensaje> buscarMensajePorFecha(@Param("primeraFecha") LocalDateTime primeraFecha,@Param("segundaFecha") LocalDateTime segundaFecha);
+    @Query("SELECT m FROM Mensaje m WHERE DATE(m.fechaHora) BETWEEN :primeraFecha AND :segundaFecha")
+    ArrayList<Mensaje> buscarMensajePorFecha(@Param("primeraFecha") LocalDate primeraFecha,@Param("segundaFecha") LocalDate segundaFecha);
 
     @Query("SELECT m FROM Mensaje m WHERE m.persona.id = :idPersona")
     ArrayList<Mensaje>buscarMensajePorID(@Param("idPersona")long idPersona);
