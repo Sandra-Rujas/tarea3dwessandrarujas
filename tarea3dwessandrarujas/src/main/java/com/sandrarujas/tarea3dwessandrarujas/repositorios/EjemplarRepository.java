@@ -15,13 +15,13 @@ import jakarta.transaction.Transactional;
 
 @Repository
 public interface EjemplarRepository extends JpaRepository <Ejemplar, Long>{
-
-	 @Query("SELECT COUNT(e) FROM Ejemplar e")
-    int totalEjemplares();
-
+	
+	/*Método que nos permite a través de una consulta mostrar los ejemplares que hay en la base de datos con dicho código*/
 	 @Query("SELECT e FROM Ejemplar e WHERE e.planta.codigo = :codigoPlanta")
 	 List<Ejemplar> ejemplaresPorPlanta(@Param("codigoPlanta") String codigoPlanta);
 
+	 /*Método que a través de una consulta nos permite modificar el nombre de la planta según el Id. 
+	  * El @ Transactional se utiliza para todas aquellas consultas que nos permiten modificar un dato*/
 	@Transactional
     @Modifying
     @Query("UPDATE Ejemplar e SET e.nombre = :nuevoNombre WHERE e.id = :idEjemplar")
