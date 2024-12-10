@@ -6,71 +6,60 @@ import org.springframework.stereotype.Service;
 @Service
 public class Controlador {
 	
-    private String usuarioConectado;
+    /*Dependencias del paquete servicios*/
+	@Autowired
+	ServiciosPlanta serviciosPlanta;
 	
 	@Autowired
-	ServiciosPlanta svPlanta;
+	ServiciosEjemplar serviciosEjemplar;
 	
 	@Autowired
-	ServiciosEjemplar svEjemplar;
+	ServiciosPersona serviciosPersona;
 	
 	@Autowired
-	ServiciosPersona svPersona;
+	ServiciosCredencial serviciosCredencial;
 	
 	@Autowired
-	ServiciosCredencial svCredencial;
+	ServiciosMensaje serviciosMensaje;
 	
-	@Autowired
-	ServiciosMensaje svMensaje;
-	
-	
-
-	// Métodos para obtener las clases servicios de cada clase en las fachadas
-	
-	public ServiciosPlanta getServiciosPlanta() {
-		return svPlanta;
-	}
-
-	public ServiciosEjemplar getServiciosEjemplar() {
-		return svEjemplar;
-	}
-	
-	public ServiciosPersona getServiciosPersona() {
-		return svPersona;
-	}
-	
-	public ServiciosCredencial getServiciosCredencial() {
-		return svCredencial;
-	}
-	
-	public ServiciosMensaje getServiciosMensaje() {
-		return svMensaje;
-	}
-	
-	
-
-	/**
-	 * Método para iniciar sesión con un usuario 
-	 */
-    public void iniciarSesion(String usuario) {
-        this.usuarioConectado = usuario;
-    }
-    
-    
-    /**
-	 * Método para obtener el usuario conectado 
-	 */
+	 private String usuarioConectado;
+	 
+    /* Método para obtener el usuario conectado*/
     public String obtenerUsuarioConectado() {
         return usuarioConectado;
     }
     
-    /**
-	 * Método para cerrar sesión 
-	 */
+    /*Método para iniciar sesión con un usuario*/
+    public void iniciarSesion(String usuario) {
+        this.usuarioConectado = usuario;
+    }
+                   
+    /*Método para cerrar sesión */
 	public void cerrarSesion() {
 		this.usuarioConectado = null;
 	}
+
+	/*Métodos para obtener las clases servicios de cada clase en las fachadas*/
+	public ServiciosPlanta getServiciosPlanta() {
+		return serviciosPlanta;
+	}
+
+	public ServiciosEjemplar getServiciosEjemplar() {
+		return serviciosEjemplar;
+	}
 	
+	public ServiciosPersona getServiciosPersona() {
+		return serviciosPersona;
+	}
+	
+	public ServiciosCredencial getServiciosCredencial() {
+		return serviciosCredencial;
+	}
+	
+	public ServiciosMensaje getServiciosMensaje() {
+		return serviciosMensaje;
+	}
+
 	
 
 }
