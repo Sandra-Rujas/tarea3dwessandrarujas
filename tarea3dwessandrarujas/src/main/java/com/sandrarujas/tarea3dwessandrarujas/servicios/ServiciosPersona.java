@@ -14,36 +14,46 @@ public class ServiciosPersona {
 	@Autowired
 	private PersonaRepository personaRepository;
 
+		/*Método insertar persona.
+		 * @param persona. La persona que queremos añadir.
+		 */
 	    public void insertar(Persona persona) {
 	    	personaRepository.saveAndFlush(persona);
 	    }
 
-	    public Collection<Persona> verTodos() {
+	    /*Método que nos permite ver todas las personas.
+	     * @return todas las personas.*/
+	    public Collection<Persona> totalPersonas() {
 	        return personaRepository.findAll();
 	    }
 
+	    /*Método que nos permite comprobar si el email existe.
+	     * @param email. El email de la persona.
+	     * @return true si existe el email, false si no.
+	     */
 	    public boolean emailExistente(String email) {
 	        return personaRepository.existsByEmail(email);
 	    }
-
-	    public long idUsuarioAutenticado(String usuario) {
-	        Long idPersona = personaRepository.idUsuarioAutenticado(usuario);
-	        return (idPersona != null) ? idPersona : -1;
-	    }
 	    
 
+	    /*Método buscar persona por nombre.
+	     * @param nombre. El nombre de la persona que queremos encontrar.
+	     * @return el nombre ignorando las mayúsculas y minúsculas.
+	     */
 	    public Persona buscarPorNombre(String nombre){
 	    	return personaRepository.findByNombreContainingIgnoreCase(nombre);
 	    }
 	    
+	    /*Método validar persona.
+	     * @param persona.La persona que queremos validar.
+	     * @return false si la persona es null. Si el nombre está vacío.
+	     * Si el email no cumple con los requisitos especificados.
+	     */
 	    public boolean validarPersona(Persona persona) {
 	        if (persona == null) {
 	            return false;
 	        }
 	        if (persona.getNombre() == null || persona.getNombre().isEmpty()) {
-	            return false;
-	        }
-	        if (persona.getNombre().length() < 3 || persona.getNombre().length() > 25) {
 	            return false;
 	        }
 	        if (persona.getEmail() == null || persona.getEmail().isEmpty()) {

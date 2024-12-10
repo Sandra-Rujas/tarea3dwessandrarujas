@@ -18,9 +18,8 @@ public class ServiciosPlanta {
     @Autowired
     private PlantaRepository plantaRepository;
 
-    /**
+    /*
      * Método para insertar una nueva planta.
-     * 
      * @param planta Objeto planta que queremos insertar
      * 
      */
@@ -29,31 +28,17 @@ public class ServiciosPlanta {
     }
 
     
-    /**
+    /*
      * Método para obtener todas las plantas en una colección.
-     * 
      * @return Colección de todas las plantas
      */
     @Transactional
     public List<Planta> verPlantas() {
     	return plantaRepository.findAllByOrderByNombreComunAsc();
     }
-
-    
-    /**
-     * Método para buscar una planta por su ID.
-     * 
-     * @param id ID de la planta
-     * @return Planta seleccionada por su ID o en caso de no existir 'null'
-     */
-    public Planta buscarPorID(long id) {
-        Optional<Planta> plantas = plantaRepository.findById(id);
-        return plantas.orElse(null);
-    }
-
-    /**
+ 
+    /*
      * Método para actualizar el nombre común de una planta.
-     * 
      * @param codigo Código de la planta
      * @param nComun Nuevo nombre común
      * @return true si se ha actualizado correctamente el nombre
@@ -70,9 +55,8 @@ public class ServiciosPlanta {
         return false;
     }
 
-    /**
+    /*
      * Método para actualizar el nombre científico de una planta.
-     * 
      * @param codigo Código de la planta
      * @param nCientifico Nuevo nombre científico
      * @return true si se ha actualizado correctamente, false si no
@@ -89,9 +73,8 @@ public class ServiciosPlanta {
         return false;
     }
 
-    /**
+    /*
      * Método para comprobar si existe el código de una planta.
-     * 
      * @param codigo Código de la planta
      * @return true si el código ya existe, false si no
      */
@@ -99,9 +82,8 @@ public class ServiciosPlanta {
         return plantaRepository.existsByCodigo(codigo);
     }
 
-    /**
+    /*
      * Método para validar una planta.
-     * 
      * @param p Planta a validar
      * @return true si la planta es válida, false si no
      */
@@ -109,50 +91,53 @@ public class ServiciosPlanta {
         if (p.getCodigo() == null || p.getCodigo().isEmpty()) {
             return false;
         }
-        if (p.getCodigo().length() < 3 || p.getCodigo().length() > 50) {
+        else if (p.getCodigo().length() < 3 || p.getCodigo().length() > 50) {
             return false;
         }
-        if (p.getNombreCientifico() == null || p.getNombreComun() == null) {
+        else if (p.getNombreCientifico() == null || p.getNombreComun() == null) {
             return false;
         }
-        if (p.getNombreCientifico().isEmpty() || p.getNombreComun().isEmpty()) {
+        else if (p.getNombreCientifico().isEmpty() || p.getNombreComun().isEmpty()) {
             return false;
         }
-        if (!p.getCodigo().matches("^[A-Za-z0-9]+$")) {
+        else if (!p.getCodigo().matches("^[A-Za-z0-9]+$")) {
             return false;
         }
-        if (p.getNombreCientifico().length() < 3 || p.getNombreCientifico().length() > 100) {
+        else if (p.getNombreCientifico().length() > 30) {
             return false;
         }
-        if (p.getNombreComun().length() < 3 || p.getNombreComun().length() > 100) {
+        else if (p.getNombreComun().length() > 30) {
             return false;
         }
-        if (!p.getNombreCientifico().matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")
+        else if (!p.getNombreCientifico().matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")
                 || !p.getNombreComun().matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
             return false;
         }
         return true;
     }
 
-    /**
+    /*
      * Método para validar el código de una planta.
-     * 
      * @param codigo Código a validar
      * @return true si el código es válido, false si no
      */
-    public boolean validarCodigo(String codigo) {
+    public boolean validarCodigoPlanta(String codigo) {
         if (codigo == null || codigo.isEmpty()) {
             return false;
         }
         if (!codigo.matches("^[A-Za-z0-9]+$")) {
             return false;
         }
-        if (codigo.length() < 3 || codigo.length() > 50) {
+        if (codigo.length() < 3 || codigo.length() > 30) {
             return false;
         }
         return true;
     }
     
+    /*Método buscar por código.
+     * @param codigo. El código de la planta que queremos buscar.
+     * @return si está el código nos muestra la lista y si no null.
+     */
     public Planta buscarPorCodigo(String codigo) {
         Optional<Planta> plantas = plantaRepository.findByCodigo(codigo);
         return plantas.orElse(null);
