@@ -29,15 +29,17 @@ public class ViveroFachadaInvitado {
     public void menuInvitado() {
         int opcion = 0;
         do {
-            System.out.println("------GESTIÓN VIVERO------");
+            System.out.println("------¡BIENVENIDO A LA GESTIÓN DEL VIVERO!------");
             System.out.println(" - - - - - - - - - - - - - - - -");
-            System.out.println("Selecciona una opción: ");
+            System.out.println("Por favor, selecciona una opción: ");
             System.out.println("1. Ver plantas");
             System.out.println("2. Login");
             System.out.println("3. Finalizar programa");
             System.out.println("- - - - - - - - - - - - - - - -");
+            
             try {
                 opcion = sc.nextInt();
+                
                 switch (opcion) {
                 case 1:
                     ArrayList<Planta> plantas = (ArrayList<Planta>) controlador.getServiciosPlanta().verPlantas(); 
@@ -45,19 +47,18 @@ public class ViveroFachadaInvitado {
                         System.err.println("No hay plantas en la BBDD.");
                         return;
                     }
-                    System.out.println("Plantas: ");
-                    System.out.println();
+                    System.out.println("LISTADO DE PLANTES: ");
                     for (Planta p : plantas) {
                         System.out.println(p);
-                        System.out.println();
                     }
                     break;
+                    
                 case 2:
                     sc.nextLine();  
                     System.out.println("Introduce usuario: ");
-                    String usuario = sc.nextLine();
+                    String usuario = sc.nextLine().trim();
                     System.out.println("Introduce contraseña: ");
-                    String password = sc.nextLine();
+                    String password = sc.nextLine().trim();
                     try {
                         boolean autenticar = controlador.getServiciosCredencial().autenticar(usuario, password);  
                         if (autenticar) {

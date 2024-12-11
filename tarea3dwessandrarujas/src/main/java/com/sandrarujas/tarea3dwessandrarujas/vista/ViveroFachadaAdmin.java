@@ -22,8 +22,6 @@ import com.sandrarujas.tarea3dwessandrarujas.servicios.Controlador;
 @Component
 public class ViveroFachadaAdmin {
 
-
-
     @Autowired
     @Lazy
     private Controlador controlador;
@@ -43,9 +41,9 @@ public class ViveroFachadaAdmin {
     public void menuAdmin() {
         int opcion = 0;
         do {
-            System.out.println("------MENÚ ADMINISTRADOR------");
+            System.out.println("------¡BIENVENIDO AL MENÚ DEL ADMINISTRADOR!------");
             System.out.println("- - - - - - - - - - - - - - - - -");
-            System.out.println("Selecciona una opción:");
+            System.out.println("Por favor, selecciona una opción:");
             System.out.println("1. Gestión de plantas");
             System.out.println("2. Gestión de ejemplares");
             System.out.println("3. Gestión de mensajes");
@@ -59,6 +57,7 @@ public class ViveroFachadaAdmin {
                     continue;
                 }
                 switch (opcion) {
+                /*Los diferentes cases están desarrollados de manera detallada más abajo*/
                     case 1:
                         menuAdminPlantas();
                         break;
@@ -87,9 +86,9 @@ public class ViveroFachadaAdmin {
     public void menuAdminPlantas() {
         int opcion = 0;
         do {
-        	System.out.println("MENU PLANTAS");
+        	System.out.println("¡HAS ENTRADO AL MENU DE LAS PLANTAS!");
             System.out.println(" - - - - - - - - - - - - - - - -");
-            System.out.println("Selecciona una opción:");
+            System.out.println("Por favor, selecciona una opción:");
             System.out.println("1. Ver plantas");
             System.out.println("2. Crear nueva planta");
             System.out.println("3. Modificar datos de una planta");
@@ -108,11 +107,10 @@ public class ViveroFachadaAdmin {
                             System.err.println("No hay plantas añadidas en la BBDD.");
                             return;
                         }
-                        System.out.println("PLANTAS: ");
+                        System.out.println("LISTADO DE PLANTAS: ");
                         System.out.println();
                         for (Planta planta : plantas) {
                             System.out.println(planta);
-                            System.out.println();
                         }
                         break;
                     case 2:
@@ -124,7 +122,7 @@ public class ViveroFachadaAdmin {
                 			System.out.print("Escriba el código para la planta: ");
                 			try {
                 				String codigo = sc.nextLine().trim().toUpperCase();
-                				boolean correcto = controlador.getServiciosPlanta().validarCodigo(codigo);
+                				boolean correcto = controlador.getServiciosPlanta().validarCodigoPlanta(codigo);
                 				boolean existe = controlador.getServiciosPlanta().codigoExistente(codigo);
                 				if (!correcto) {
                 					System.err.println("El formato del código no es correcto.");
@@ -176,9 +174,9 @@ public class ViveroFachadaAdmin {
     public void menuAdminModificarPlantas() {
         int opcion = 0;
         do {
-        	System.out.println("MENU MODIFICAR PLANTAS");
+        	System.out.println("¡ESTE ES EL MENU DE MODIFICAR PLANTAS!");
             System.out.println(" - - - - - - - - - - - - - - - -");
-            System.out.println("Selecciona una opción:");
+            System.out.println("Por favor, selecciona una opción:");
             System.out.println("1. Modificar nombre común");
             System.out.println("2. Modificar nombre científico");
             System.out.println("3. Volver al menú de plantas");
@@ -197,8 +195,7 @@ public class ViveroFachadaAdmin {
                             System.err.println("No hay plantas añadidas en la BBDD.");
                             return;
                         }
-                        System.out.println("PLANTAS: ");
-                        System.out.println();
+                        System.out.println("LISTADO DE PLANTAS: ");
                         for (Planta planta : plantas) {
                             System.out.println(planta);
                             System.out.println();
@@ -209,7 +206,7 @@ public class ViveroFachadaAdmin {
                 	    do {
                 	        System.out.print("Introduce el código de la planta de la que quieres modificar el nombre común: ");
                 	        codigo = sc.nextLine().trim().toUpperCase();
-                	        valido = controlador.getServiciosPlanta().validarCodigo(codigo);
+                	        valido = controlador.getServiciosPlanta().validarCodigoPlanta(codigo);
                 	        if (!valido) {
                 	            System.err.println("El código de la planta que has introducido no es válido");
                 	        }
@@ -220,12 +217,12 @@ public class ViveroFachadaAdmin {
                 	        return;
                 	    }
                 	    System.out.print("Introduce el nuevo nombre común de la planta: ");
-                	    String nnComun = sc.nextLine().trim().toUpperCase();
+                	    String nonComun = sc.nextLine().trim().toUpperCase();
                 	    try {
-                	        boolean actualizado = controlador.getServiciosPlanta().actualizarNombreComun(codigo, nnComun);
+                	        boolean actualizado = controlador.getServiciosPlanta().actualizarNombreComun(codigo, nonComun);
                 	        if (actualizado) {
                 	            System.out.println("El nombre común de la planta " + codigo
-                	                    + " ha sido modificado por: " + nnComun);
+                	                    + " ha sido modificado por: " + nonComun);
                 	        } else {
                 	            System.err.println("Error al intentar actualizar el nombre común");
                 	        }
@@ -239,17 +236,16 @@ public class ViveroFachadaAdmin {
                             System.err.println("No hay plantas añadidas en la BBDD.");
                             return;
                         }
-                        System.out.println("PLANTAS: ");
+                        System.out.println("LISTADO DE PLANTAS: ");
                         System.out.println();
                         for (Planta planta : plantas) {
                             System.out.println(planta);
-                            System.out.println();
                         }
                     	sc.nextLine();
                 	    do {
                 	        System.out.print("Introduce el código de la planta de la que quieres modificar el nombre científico: ");
                 	        codigo = sc.nextLine().trim();
-                	        valido = controlador.getServiciosPlanta().validarCodigo(codigo);
+                	        valido = controlador.getServiciosPlanta().validarCodigoPlanta(codigo);
                 	        if (!valido) {
                 	            System.err.println("El código de la planta que has introducido no es válido");
                 	        }
@@ -287,9 +283,9 @@ public class ViveroFachadaAdmin {
     public void menuAdminEjemplares() {
         int opcion = 0;
         do {
-        	System.out.println("MENU EJEMPLARES");
+        	System.out.println("¡HAS ENTRADO AL MENU DE EJEMPLARES!");
             System.out.println("- - - - - - - - - - - - - - -");
-            System.out.println("Selecciona una opción:");
+            System.out.println("Por favor, selecciona una opción:");
             System.out.println("1. Registrar nuevo ejemplar");
             System.out.println("2. Filtrar ejemplares por tipo de planta");
             System.out.println("3. Ver mensajes de un ejemplar");
@@ -319,11 +315,10 @@ public class ViveroFachadaAdmin {
                                 System.out.println();
                                 for (Planta planta : plantas) {
                                     System.out.println(planta.getCodigo());
-                                    System.out.println();
                                 }
                 	            System.out.print("Código de la planta del ejemplar: ");
                 	            String codigoPlanta = sc.nextLine().trim().toUpperCase();
-                	            boolean codigoValido = controlador.getServiciosPlanta().validarCodigo(codigoPlanta);
+                	            boolean codigoValido = controlador.getServiciosPlanta().validarCodigoPlanta(codigoPlanta);
                 	            boolean plantaExiste = controlador.getServiciosPlanta().codigoExistente(codigoPlanta);
                 	            if (!codigoValido) {
                 	                System.err.println("El formato del código no es correcto");
@@ -365,11 +360,9 @@ public class ViveroFachadaAdmin {
                             System.err.println("No hay plantas añadidas en la BBDD.");
                             return;
                         }
-                        System.out.println("PLANTAS: ");
-                        System.out.println();
+                        System.out.println("LISTADO DE PLANTAS: ");
                         for (Planta planta : plantas) {
                             System.out.println(planta);
-                            System.out.println();
                         }
                     	try {
                             System.out.print("Introduce el código de la planta para ver los ejemplares: ");
@@ -399,11 +392,10 @@ public class ViveroFachadaAdmin {
                             System.err.println("No hay ejemplares añadidos en la BBDD.");
                             return;
                         }
-                        System.out.println("EJEMPLARES: ");
+                        System.out.println("LISTADO DE EJEMPLARES: ");
                         System.out.println();
                         for (Ejemplar e : ejemplares) {
                             System.out.println(e);
-                            System.out.println();
                         }
                     	System.out.print("Introduce el id de un ejemplar para ver sus mensajes: ");
                 		try {
@@ -416,7 +408,6 @@ public class ViveroFachadaAdmin {
                 				System.out.println();
                 				for (Mensaje m : mensajes) {
                 					System.out.println(m);
-                					System.out.println();
                 				}
                 			}
                 		} catch (Exception e) {
@@ -438,9 +429,9 @@ public class ViveroFachadaAdmin {
     public void menuAdminPersonas() {
 		int opcion = 0;
 		do {
-			System.out.println("MENU PERSONAS");
+			System.out.println("¡HAS ENTRADO AL MENU DE PERSONAS!");
             System.out.println(" - - - - - - - - - - - - - - - -");
-			System.out.println("Selecciona una opción:");
+			System.out.println("Por favor, selecciona una opción:");
 			System.out.println("1. Registrar nueva persona");
 			System.out.println("2. Ver todas las personas");
 			System.out.println("3. Volver al menú principal");
@@ -517,7 +508,7 @@ public class ViveroFachadaAdmin {
 				    }
 					break;
 				case 2:
-					ArrayList<Persona> personas = (ArrayList<Persona>) controlador.getServiciosPersona().verTodos();
+					ArrayList<Persona> personas = (ArrayList<Persona>) controlador.getServiciosPersona().totalPersonas();
 					if (personas == null || personas.isEmpty()) {
 						System.err.println("No hay personas en la BBDD.");
 						return;
@@ -526,7 +517,6 @@ public class ViveroFachadaAdmin {
 					System.out.println();
 					for (Persona persona : personas) {
 						System.out.println(persona);
-						System.out.println();
 					}
 					break;
 				}
@@ -543,9 +533,9 @@ public class ViveroFachadaAdmin {
     public void menuAdminMensajes() {
         int opcion = 0;
         do {
-        	System.out.println("MENU MENSAJES");
+        	System.out.println("¡HAS ENTRADO AL MENU DE LOS MENSAJES!");
             System.out.println(" - - - - - - - - - - - - - - - -");
-            System.out.println("Selecciona una opción:");
+            System.out.println("Por favor, selecciona una opción:");
             System.out.println("1. Nuevo mensaje");
             System.out.println("2. Ver mensajes");
             System.out.println("3. Volver al menú principal");
@@ -616,9 +606,9 @@ public class ViveroFachadaAdmin {
     public void menuAdminVerMensajes() {
         int opcion = 0;
         do {
-        	System.out.println("MENU VER MENSAJES");
+        	System.out.println("¡ESTE ES EL MENU VER MENSAJES!");
             System.out.println(" - - - - - - - - - - - - - - - -");
-            System.out.println("Selecciona una opción:");
+            System.out.println("Por favor, selecciona una opción:");
             System.out.println("1. Ver todos los mensajes");
             System.out.println("2. Ver mensajes por persona");
             System.out.println("3. Ver mensajes por fechas");
@@ -639,23 +629,19 @@ public class ViveroFachadaAdmin {
                 			return;
                 		}
                 		System.out.println("Todos los mensajes: ");
-                		System.out.println();
                 		for (Mensaje m : mensajes) {
                 			System.out.println(m);
-                			System.out.println();
                 		}
                         break;
                     case 2:
-                    	ArrayList<Persona> personas = (ArrayList<Persona>) controlador.getServiciosPersona().verTodos();
+                    	ArrayList<Persona> personas = (ArrayList<Persona>) controlador.getServiciosPersona().totalPersonas();
     					if (personas == null || personas.isEmpty()) {
     						System.err.println("No hay personas en la BBDD.");
     						return;
     					}
-    					System.out.println("PERSONAS: ");
-    					System.out.println();
+    					System.out.println("LISTADO DE PERSONAS: ");
     					for (Persona persona : personas) {
     						System.out.println(persona);
-    						System.out.println();
     					}
                     	System.out.print("Introduce el id de una persona para ver sus mensajes: ");
                         try {
@@ -730,11 +716,10 @@ public class ViveroFachadaAdmin {
                             System.err.println("No hay plantas añadidas en la BBDD.");
                             return;
                         }
-                        System.out.println("PLANTAS: ");
+                        System.out.println("LISTADO PLANTAS: ");
                         System.out.println();
                         for (Planta planta : plantas) {
                             System.out.println(planta);
-                            System.out.println();
                         }
                     	System.out.print("Introduce el código de una planta: ");
             			sc.nextLine();
